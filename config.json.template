@@ -1,0 +1,13 @@
+{
+    "wechat": {
+        "appId": "微信公众号的appid",
+        "appSecret": "微信公众号的appsecret",
+        "openId": "推送用户的openid",
+        "successTemplateId": "签到成功模版id",
+        "errorTemplateId": "签到失败模版id"
+    },
+    "hongling": {
+        "username": "红岭用户名称",
+        "password": "红岭用户密码base64加密后的字符"
+    }
+}
