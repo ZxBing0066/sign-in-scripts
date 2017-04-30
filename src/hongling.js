@@ -119,11 +119,11 @@ phantom.create().then((instance) => {
                 // 签到成功检查
                 var checkSign = function() {
                     checkTime++;
-                    if(document.getElementById('signForDay').style.display === 'block') {
+                    if(document.getElementById('signForDay') && document.getElementById('signForDay').style.display === 'block') {
                         pass = true;
                     }
                     if(pass) {
-                        console.log(JSON.stringify({resolve: true, message: document.getElementsByClassName('daytime')[0] && document.getElementsByClassName('daytime')[0].innerText + ', ' + document.getElementsByClassName('puIntegral_2')[0] && document.getElementsByClassName('puIntegral_2')[0].innerText}));
+                        console.log(JSON.stringify({resolve: true, message: (document.getElementsByClassName('daytime')[0] && document.getElementsByClassName('daytime')[0].innerText) + ', ' + (document.getElementsByClassName('puIntegral_2')[0] && document.getElementsByClassName('puIntegral_2')[0].innerText)}));
                     } else if(checkTime < maxCheckTime) {
                         setTimeout(function() {
                             checkSign();
