@@ -1,1 +1,1 @@
-30 6 * * * npm run hongling
+30 6 * * * cd /root/workspace/sign-in-scripts && npm run hongling

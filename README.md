@@ -15,6 +15,7 @@
 * 签到失败后点击微信推送消息实现重新签到
 
 使用方法：
+* npm install 安装依赖
 * 复制config.json.template到.config.json文件
 * 将.config.json文件中的密码等替换为自己的
-* 将crontab.cron文件添加到crontab任务
+* 将crontab.cron文件添加到crontab任务(额。。记得改crontab中的脚本路径)
