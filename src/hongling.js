@@ -107,39 +107,31 @@ phantom.create().then((instance) => {
         };
         // 页面执行签到
         _page.evaluate(function() {
-            var signBtn = document.getElementById('signBut'),
-                signOK = document.getElementsByClassName('SignOK')[0];
-            // 签到按钮
-            if(signBtn) {
-                // 点击签到
-                signBtn.click();
-                var checkTime = 0;
-                var maxCheckTime = 10;
-                var pass = false;
-                // 签到成功检查
-                var checkSign = function() {
-                    checkTime++;
-                    if(document.getElementById('signForDay') && document.getElementById('signForDay').style.display === 'block') {
-                        pass = true;
-                    }
-                    if(pass) {
-                        console.log(JSON.stringify({resolve: true, message: (document.getElementsByClassName('daytime')[0] && document.getElementsByClassName('daytime')[0].innerText) + ', ' + (document.getElementsByClassName('puIntegral_2')[0] && document.getElementsByClassName('puIntegral_2')[0].innerText)}));
-                    } else if(checkTime < maxCheckTime) {
-                        setTimeout(function() {
-                            checkSign();
-                        }, 1000);
+            var signTime = 0;
+            var maxSignTime = 3;
+            var sign = function() {
+                signTime++;
+                $.post( "/userSignByDay", function(res){
+                    var message;
+                    if(res.flag === '1') {
+                        message = '本次签到积分：' + res.score + '，奖励积分：' + res.rewardScore + '，累计获得积分：' + res.allSignScore + '，已经连续签到：' + res.level + '天。';
                     } else {
-                        console.log(JSON.stringify({resolve: false, message: 'something went wrong after sign'}));
+                        message = res.message;
                     }
-                }
-                checkSign();
-            } else if(signOK) {
-                console.log(JSON.stringify('already signed'));
-                console.log(JSON.stringify({resolve: true, message: '今天已经签到过了！'}));
-            } else {
-                console.log(JSON.stringify('something went wrong'));
-                console.log(JSON.stringify({resolve: false, message: 'something went wrong when find signBtn'}));
-            }
+                    console.log(JSON.stringify({
+                        resolve: true,
+                        message: message
+                    }));
+                }, 'json').fail(function() {
+                    console.log('load userSignByDay error');
+                    if(signTime < maxSignTime) {
+                        sign();
+                    } else {
+                        console.log('error to many times');
+                    }
+                });
+            };
+            sign();
         });
     }).then((message) => {
         onConsoleMessage = null;
