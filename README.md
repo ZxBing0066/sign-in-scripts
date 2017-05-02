@@ -7,7 +7,7 @@
 -------
 
 现有功能：
-* 使用crontab脚本每天6:30自动执行红岭签到然后发送签到状态和签到天数、签到积分到微信。
+* 使用node-crontab每天7自动执行红岭签到然后发送签到状态和签到天数、签到积分到微信。
 
 可优化点：
 * 签到失败后重新启动签到，进行一定次数后再提示失败
@@ -15,7 +15,7 @@
 * 签到失败后点击微信推送消息实现重新签到
 
 使用方法：
-* npm install 安装依赖
+* npm install 安装依赖，安装pm2
 * 复制config.json.template到.config.json文件
-* 将.config.json文件中的密码等替换为自己的
-* 将crontab.cron文件添加到crontab任务(额。。记得改crontab中的脚本路径)
+* 将.config.json文件中的密码等替换为自己的(注意红岭密码为base64后的)
+* npm start 启动服务

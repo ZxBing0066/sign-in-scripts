@@ -4,11 +4,13 @@
   "description": "每日签到",
   "main": "index.js",
   "scripts": {
+    "start": "pm2 start index.js",
     "hongling": "node src/hongling.js"
   },
   "author": "txffxy,ZxBing0066",
   "license": "ISC",
   "dependencies": {
+    "cron": "^1.2.1",
     "js-base64": "^2.1.9",
     "log4js": "^0.6.35",
     "phantom": "^4.0.2",

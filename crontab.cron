@@ -1,1 +1,0 @@
-30 6 * * * cd /root/workspace/sign-in-scripts && npm run hongling >> /root/sign-in.log 2>&1
